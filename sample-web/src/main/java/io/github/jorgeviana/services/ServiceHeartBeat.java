@@ -1,7 +1,7 @@
-package com.hotjoe.services;
+package io.github.jorgeviana.services;
 
 
-import com.hotjoe.beans.HelloBean;
+import io.github.jorgeviana.beans.HelloBean;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;

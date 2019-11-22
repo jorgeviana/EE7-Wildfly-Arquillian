@@ -1,4 +1,4 @@
-package com.hotjoe.services;
+package io.github.jorgeviana.services;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

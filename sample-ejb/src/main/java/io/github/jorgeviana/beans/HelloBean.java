@@ -1,4 +1,4 @@
-package com.hotjoe.beans;
+package io.github.jorgeviana.beans;
 
 import javax.ejb.Stateless;
 import java.time.LocalDateTime;

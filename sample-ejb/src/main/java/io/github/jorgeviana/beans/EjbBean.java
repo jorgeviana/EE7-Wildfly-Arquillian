@@ -4,9 +4,9 @@ import javax.ejb.Stateless;
 import java.time.LocalDateTime;
 
 @Stateless
-public class HelloBean {
+public class EjbBean {
 
 	public String sayHello() {
-		return "Hello from Bean at " + LocalDateTime.now();
+		return "Hello from Ejb at " + LocalDateTime.now();
 	}
 }

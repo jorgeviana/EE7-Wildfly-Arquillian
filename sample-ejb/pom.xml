@@ -25,7 +25,9 @@
         <version>1.0.0</version>
     </parent>
 
+    <groupId>com.example</groupId>
     <artifactId>sample-ejb</artifactId>
+    <version>1.0.0</version>
     <packaging>ejb</packaging>
 
     <name>sample: EJB Module</name>

@@ -1,7 +1,7 @@
 package io.github.jorgeviana.services;
 
 
-import io.github.jorgeviana.beans.HelloBean;
+import io.github.jorgeviana.beans.EjbBean;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -32,7 +32,10 @@ public class ServiceHeartBeat {
 
 
 	@Inject
-	HelloBean helloBean;
+	EjbBean helloBean;
+
+//	@Inject
+//	ServiceBean helloBean;
 
 	@Produces({ MediaType.TEXT_PLAIN })
 	@GET

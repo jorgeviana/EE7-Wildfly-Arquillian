@@ -4,8 +4,7 @@
 
     <container qualifier="wildfly-managed" default="true">
         <configuration>
-<!--            <property name="jbossHome">${project.basedir}/target/wildfly-${version.wildfly}</property>-->
-            <property name="jbossHome">/Users/jv/projects/EE7-Wildfly-Arquillian/sample-web/target/wildfly-${version.wildfly}</property>
+            <property name="jbossHome">${project.basedir}/target/wildfly-${version.wildfly}</property>
             <property name="javaVmArguments">-Djboss.socket.binding.port-offset=100</property>
             <property name="managementPort">10090</property>
         </configuration>

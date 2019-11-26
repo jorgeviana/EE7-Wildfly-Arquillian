@@ -8,6 +8,13 @@
     <version>1.0.0</version>
     <packaging>war</packaging>
 
+
+    <parent>
+        <groupId>com.example</groupId>
+        <artifactId>sample</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
     <properties>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -30,16 +37,16 @@
         <dependency>
             <groupId>com.example</groupId>
             <artifactId>sample-ejb</artifactId>
-            <version>1.0.0</version>
+            <type>ejb</type>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
-            <version>7.0</version>
             <scope>provided</scope>
         </dependency>
 
+<!--       Use latest version !   -->
         <dependency>
             <groupId>org.wildfly.arquillian</groupId>
             <artifactId>wildfly-arquillian-container-managed</artifactId>
@@ -59,7 +66,6 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>${version.junit}</version>
             <scope>test</scope>
         </dependency>
 
@@ -79,15 +85,15 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- This is the latest, but arquillian bom also contains some older version -->
-            <!-- Needs to be declared first to override older -->
-<!--            <dependency>-->
-<!--                <groupId>org.jboss.shrinkwrap.resolver</groupId>-->
-<!--                <artifactId>shrinkwrap-resolver-bom</artifactId>-->
-<!--                <version>${version.shrinkwrap.resolver}</version>-->
-<!--                <type>pom</type>-->
-<!--                <scope>import</scope>-->
-<!--            </dependency>-->
+<!--             This is the latest, but arquillian bom also contains some older version-->
+<!--             Needs to be declared first to override older-->
+            <dependency>
+                <groupId>org.jboss.shrinkwrap.resolver</groupId>
+                <artifactId>shrinkwrap-resolver-bom</artifactId>
+                <version>${version.shrinkwrap.resolver}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>

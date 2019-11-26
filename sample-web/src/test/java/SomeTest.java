@@ -1,3 +1,5 @@
+import io.github.jorgeviana.beans.EjbBean;
+import io.github.jorgeviana.services.ServiceBean;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -10,6 +12,7 @@ import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.Filters;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.jboss.shrinkwrap.resolver.api.maven.PomEquippedResolveStage;
@@ -44,12 +47,18 @@ public class SomeTest {
 		ScopeType[] scopes = {ScopeType.COMPILE, ScopeType.TEST}; // no SYSTEM and no PROVIDED
 		File[] libs = pom.importDependencies(scopes).resolve().using(TransitiveStrategy.INSTANCE).asFile();
 
-		return ShrinkWrap.create(WebArchive.class, "service-test.war")
+		WebArchive war = ShrinkWrap.create(WebArchive.class, "service-test.war")
 				.addAsLibraries(libs)
 				.addPackages(true, Filters.exclude(".*Test.*"), "io.github.jorgeviana.services")
-				.addClass(io.github.jorgeviana.beans.EjbBean.class)
-				.addClass(io.github.jorgeviana.services.ServiceBean.class)
+				.addClass(EjbBean.class)
+				.addClass(ServiceBean.class)
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+
+		// https://github.com/testcontainers/testcontainers-java/issues/229
+		// Add files or directories to container
+		war.as(ZipExporter.class).exportTo(new File("target/"+ war.getName() ), true);
+
+		return war;
 	}
 
 	@Test

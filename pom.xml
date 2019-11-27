@@ -9,9 +9,9 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>sample-ejb</module>
-        <module>sample-web</module>
-        <module>sample-ear</module>
+        <module>ejb</module>
+        <module>web</module>
+        <module>ear</module>
     </modules>
 
     <properties>

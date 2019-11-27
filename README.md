@@ -16,7 +16,7 @@ docker run -p 8080:8080 -p 9990:9990 -it jboss/wildfly /bin/bash
 $ /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0
 $ add-user.sh ...
                                                
-docker cp sample-ear/target/sample-ear.ear CONTAINER_ID:/opt/jboss/wildfly/standalone/deployments
+docker cp ear/target/sample-ear.ear CONTAINER_ID:/opt/jboss/wildfly/standalone/deployments
 
 ```
 or, but do not forget to `-b 0.0.0.0`
@@ -26,7 +26,7 @@ or, but do not forget to `-b 0.0.0.0`
 docker run -p 8080:8080 -p 9990:9990 -it jboss/wildfly \
 /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0
 
-docker cp sample-ear/target/sample-ear.ear CONTAINER_ID:/opt/jboss/wildfly/standalone/deployments
+docker cp ear/target/sample-ear.ear CONTAINER_ID:/opt/jboss/wildfly/standalone/deployments
 ```
 
 Then

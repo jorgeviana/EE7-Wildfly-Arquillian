@@ -3,33 +3,25 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.example</groupId>
+    <artifactId>sample-ear</artifactId>
+    <version>${project.parent.version}</version>
+    <packaging>ear</packaging>
+
     <parent>
-        <artifactId>sample</artifactId>
         <groupId>com.example</groupId>
+        <artifactId>sample</artifactId>
         <version>1.0.0</version>
     </parent>
 
-    <groupId>com.example</groupId>
-    <artifactId>sample-ear</artifactId>
-    <packaging>ear</packaging>
-
-    <name>sample: EAR Module</name>
-
-    <url>http://wildfly.org</url>
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <distribution>repo</distribution>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
-        </license>
-    </licenses>
+    <properties>
+        <version.ear.plugin>2.10</version.ear.plugin>
+    </properties>
 
     <dependencies>
-
-        <!-- Depend on the ejb module and war so that we can package them -->
         <dependency>
             <groupId>com.example</groupId>
-            <artifactId>sample-service</artifactId>
+            <artifactId>sample-web</artifactId>
             <type>war</type>
         </dependency>
         <dependency>
@@ -47,49 +39,11 @@
                 <artifactId>maven-ear-plugin</artifactId>
                 <version>${version.ear.plugin}</version>
                 <configuration>
-                    <!-- Tell Maven we are using Java EE 7 -->
-                    <version>7</version>
-                    <!-- Use Java EE ear libraries as needed. Java EE ear libraries 
-                        are in easy way to package any libraries needed in the ear, and automatically 
-                        have any modules (EJB-JARs and WARs) use them -->
+                    <version>${version.javaee.major}</version>
                     <defaultLibBundleDir>lib</defaultLibBundleDir>
                     <fileNameMapping>no-version</fileNameMapping>
                 </configuration>
             </plugin>
-            <!-- The WildFly plugin deploys your ear to a local WildFly container -->
-            <!-- Due to Maven's lack of intelligence with EARs we need to configure 
-                the wildfly maven plugin to skip deployment for all modules. We then enable
-                it specifically in the ear module. -->
-            <plugin>
-                <groupId>org.wildfly.plugins</groupId>
-                <artifactId>wildfly-maven-plugin</artifactId>
-                <configuration>
-                    <filename>${project.artifactId}.ear</filename>
-                    <skip>false</skip>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
-   
-    <profiles>
-        <profile>
-            <!-- When built in OpenShift the 'openshift' profile will be used when invoking mvn. -->
-            <!-- Use this profile for any OpenShift specific customization your app will need. -->
-            <!-- By default that is to put the resulting archive into the 'deployments' folder. -->
-            <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
-            <id>openshift</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-ear-plugin</artifactId>
-                        <version>${version.ear.plugin}</version>
-                        <configuration>
-                            <outputDirectory>deployments</outputDirectory>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-
 </project>

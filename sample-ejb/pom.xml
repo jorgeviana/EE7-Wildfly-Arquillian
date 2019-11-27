@@ -3,27 +3,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.example</groupId>
+    <artifactId>sample-ejb</artifactId>
+    <version>${version.project.ejb}</version>
+    <packaging>ejb</packaging>
+
     <parent>
-        <artifactId>sample</artifactId>
         <groupId>com.example</groupId>
+        <artifactId>sample</artifactId>
         <version>1.0.0</version>
     </parent>
 
-    <groupId>com.example</groupId>
-    <artifactId>sample-ejb</artifactId>
-    <version>1.0.0</version>
-    <packaging>ejb</packaging>
-
-    <name>sample: EJB Module</name>
-
-    <url>http://wildfly.org</url>
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <distribution>repo</distribution>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
-        </license>
-    </licenses>
+    <properties>
+        <version.ejb>3.1</version.ejb>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -38,7 +31,6 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -46,10 +38,8 @@
         <plugins>
             <plugin>
                 <artifactId>maven-ejb-plugin</artifactId>
-                <version>${version.ejb.plugin}</version>
                 <configuration>
-                    <!-- Tell Maven we are using EJB 3.1 -->
-                    <ejbVersion>3.1</ejbVersion>
+                    <ejbVersion>${version.ejb}</ejbVersion>
                 </configuration>
             </plugin>
         </plugins>
